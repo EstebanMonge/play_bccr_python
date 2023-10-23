@@ -12,16 +12,16 @@ REMOVE_ATTRIBUTES = ['rules', 'lang','language','onmouseover','onmouseout','scri
 user_home=str(Path.home())
 options=webdriver.FirefoxOptions()
 options.add_argument("--headless")
-#driver=webdriver.Firefox(options=options)
+driver=webdriver.Firefox(options=options)
 download_file=user_home+"/Downloads/resultado.xls"
-#if os.path.isfile(download_file):
-#   os.remove(download_file) 
-#try:
-#    driver.get("https://gee.bccr.fi.cr/IndicadoresEconomicos/Cuadros/frmConsultaTCVentanilla.aspx")
-#    driver.find_element(By.ID,"Button1").click()
-#    driver.quit()
-#except Exception as err:
-#    print("Something is wrong: "+ err)
+if os.path.isfile(download_file):
+   os.remove(download_file) 
+try:
+    driver.get("https://gee.bccr.fi.cr/IndicadoresEconomicos/Cuadros/frmConsultaTCVentanilla.aspx")
+    driver.find_element(By.ID,"Button1").click()
+    driver.quit()
+except Exception as err:
+    print("Something is wrong: "+ err)
 
 if os.path.isfile(download_file):
     file=open(download_file, "r",encoding="ISO-8859-1")
@@ -48,4 +48,4 @@ for ind in dataFrame.index:
     else:
         tipo_entidad=dataFrame['Tipo de Entidad'][ind]
 print(dataFrame)
-dataFrame.to_csv('caca.csv')
+dataFrame.to_csv('exchange_rates.csv')
